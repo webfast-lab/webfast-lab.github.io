@@ -1,25 +1,26 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+
+
+<html theme="dark" showBanner="true" hasBanner="false" > 
+<link href="/fontawesome/css/fontawesome.css" rel="stylesheet">
+<link href="/fontawesome/css/brands.css" rel="stylesheet">
+<link href="/fontawesome/css/solid.css" rel="stylesheet">
+<script src="/js/color.global.min.js" ></script>
+<script src="/js/load-settings.js" ></script>
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+  <meta charset="utf-8">
+  
+  
+  
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  
+  <title>Ryk 的技术博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="/css/main.css">
+  <link rel="preload" href="/css/fonts/Roboto-Regular.ttf" as="font" type="font/ttf" crossorigin="anonymous">
+  <link rel="preload" href="/css/fonts/Roboto-Bold.ttf" as="font" type="font/ttf" crossorigin="anonymous">
 
-
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
-
-<script class="next-config" data-name="main" type="application/json">{"hostname":"webfast-lab.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta name="description" content="记录算法题、通信基础、Linux 网络栈与工程实践，尽量把问题讲清楚、把过程写完整。">
+  <meta name="description" content="记录算法题、通信基础、Linux 网络栈与工程实践，尽量把问题讲清楚、把过程写完整。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ryk 的技术博客">
 <meta property="og:url" content="https://webfast-lab.github.io/index.html">
@@ -32,749 +33,784 @@
 <meta property="article:tag" content="Linux">
 <meta property="article:tag" content="系统编程">
 <meta name="twitter:card" content="summary">
-
-
-<link rel="canonical" href="https://webfast-lab.github.io/">
-
-
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Ryk 的技术博客 - 算法、网络协议与系统编程实践</title>
   
+    <link rel="alternate" href="/atom.xml" title="Ryk 的技术博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: light)" href="/images/favicon-light-192.png" sizes="192x192">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-32.png" sizes="32x32">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-128.png" sizes="128x128">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-180.png" sizes="180x180">
+    <link rel="icon" media="(prefers-color-scheme: dark)" href="/images/favicon-dark-192.png" sizes="192x192">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
+<meta name="generator" content="Hexo 7.3.0"></head>
 
-
-
-
-
-
-
-  <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
-
-  <main class="main">
-    <div class="column">
-      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
-      <h1 class="site-title">Ryk 的技术博客</h1>
-      <i class="logo-line"></i>
+<body>
+  
+   
+  <div id="main-grid" class="shadow   ">
+    <div id="nav" class=" is_home "  >
+      <navbar id="navbar">
+  <nav id="title-nav">
+    <a href="/">
+      <div id="vivia-logo">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div>Ryk 的技术博客 </div>
     </a>
-      <p class="site-subtitle" itemprop="description">算法、网络协议与系统编程实践</p>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger" aria-label="搜索" role="button">
-    </div>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-table-cells-large fa-fw"></i>分类</a></li><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-box-archive fa-fw"></i>归档</a></li>
-  </ul>
-</nav>
-
-
-
-
-</header>
-        
-  
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">ryk</p>
-  <div class="site-description" itemprop="description">记录算法题、通信基础、Linux 网络栈与工程实践，尽量把问题讲清楚、把过程写完整。</div>
-</div>
-<div class="site-state-wrap animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">6</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">7</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">18</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
   </nav>
+  <nav id="main-nav">
+    
+      <a class="main-nav-link" href="/">Home</a>
+    
+      <a class="main-nav-link" href="/archives">Archives</a>
+    
+      <a class="main-nav-link" href="/categories">Categories</a>
+    
+      <a class="main-nav-link" href="/tags">Tags</a>
+    
+      <a class="main-nav-link" href="/about">About</a>
+    
+  </nav>
+  <nav id="sub-nav">
+    <a id="theme-btn" class="nav-icon">
+      <span class="light-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M438.5-829.913v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-829.913Zm0 747.826v-48q0-17.452 11.963-29.476 11.964-12.024 29.326-12.024 17.363 0 29.537 12.024t12.174 29.476v48q0 17.452-11.963 29.476-11.964 12.024-29.326 12.024-17.363 0-29.537-12.024T438.5-82.087ZM877.913-438.5h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537t29.476-12.174h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T877.913-438.5Zm-747.826 0h-48q-17.452 0-29.476-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T82.087-521.5h48q17.452 0 29.476 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T130.087-438.5Zm660.174-290.87-34.239 32q-12.913 12.674-29.565 12.174-16.653-.5-29.327-13.174-12.674-12.673-12.554-28.826.12-16.152 12.794-28.826l33-35q12.913-12.674 30.454-12.674t30.163 12.847q12.709 12.846 12.328 30.826-.38 17.98-13.054 30.653ZM262.63-203.978l-32 34q-12.913 12.674-30.454 12.674t-30.163-12.847q-12.709-12.846-12.328-30.826.38-17.98 13.054-30.653l33.239-31q12.913-12.674 29.565-12.174 16.653.5 29.327 13.174 12.674 12.673 12.554 28.826-.12 16.152-12.794 28.826Zm466.74 33.239-32-33.239q-12.674-12.913-12.174-29.565.5-16.653 13.174-29.327 12.673-12.674 28.826-13.054 16.152-.38 28.826 12.294l35 33q12.674 12.913 12.674 30.454t-12.847 30.163q-12.846 12.709-30.826 12.328-17.98-.38-30.653-13.054ZM203.978-697.37l-34-33q-12.674-12.913-13.174-29.945-.5-17.033 12.174-29.707t31.326-13.293q18.653-.62 31.326 13.054l32 34.239q11.674 12.913 11.174 29.565-.5 16.653-13.174 29.327-12.673 12.674-28.826 12.554-16.152-.12-28.826-12.794ZM480-240q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Zm-.247-82q65.703 0 111.475-46.272Q637-414.544 637-480.247t-45.525-111.228Q545.95-637 480.247-637t-111.475 45.525Q323-545.95 323-480.247t45.525 111.975Q414.05-322 479.753-322ZM481-481Z"/></svg></span>
+      <span class="dark-mode-icon"><svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M480.239-116.413q-152.63 0-258.228-105.478Q116.413-327.37 116.413-480q0-130.935 77.739-227.435t206.304-125.043q43.022-9.631 63.87 10.869t3.478 62.805q-8.891 22.043-14.315 44.463-5.424 22.42-5.424 46.689 0 91.694 64.326 155.879 64.325 64.186 156.218 64.186 24.369 0 46.978-4.946 22.609-4.945 44.413-14.076 42.826-17.369 62.967 1.142 20.142 18.511 10.511 61.054Q807.174-280 712.63-198.206q-94.543 81.793-232.391 81.793Zm0-95q79.783 0 143.337-40.217 63.554-40.218 95.793-108.283-15.608 4.044-31.097 5.326-15.49 1.283-31.859.805-123.706-4.066-210.777-90.539-87.071-86.473-91.614-212.092-.24-16.369.923-31.978 1.164-15.609 5.446-30.978-67.826 32.478-108.282 96.152Q211.652-559.543 211.652-480q0 111.929 78.329 190.258 78.329 78.329 190.258 78.329ZM466.13-465.891Z"/></svg></span>
+    </a>
+    
+      <a id="nav-rss-link" class="nav-icon mobile-hide" href="/atom.xml" title="RSS 订阅">
+        <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M198-120q-25.846 0-44.23-18.384-18.384-18.385-18.384-44.23 0-25.846 18.384-44.23 18.384-18.385 44.23-18.385 25.846 0 44.23 18.385 18.384 18.384 18.384 44.23 0 25.845-18.384 44.23Q223.846-120 198-120Zm538.385 0q-18.846 0-32.923-13.769-14.076-13.769-15.922-33.23-8.692-100.616-51.077-188.654-42.385-88.039-109.885-155.539-67.5-67.501-155.539-109.885Q283-663.462 182.385-672.154q-19.461-1.846-33.23-16.23-13.769-14.385-13.769-33.846t14.076-32.922q14.077-13.461 32.923-12.23 120.076 8.692 226.038 58.768 105.961 50.077 185.73 129.846 79.769 79.769 129.846 185.731 50.077 105.961 58.769 226.038 1.231 18.846-12.538 32.922Q756.461-120 736.385-120Zm-252 0q-18.231 0-32.423-13.461t-18.653-33.538Q418.155-264.23 348.886-333.5q-69.27-69.27-166.501-84.423-20.077-4.462-33.538-18.961-13.461-14.5-13.461-33.346 0-19.076 13.884-33.23 13.884-14.153 33.115-10.922 136.769 15.384 234.384 112.999 97.615 97.615 112.999 234.384 3.231 19.23-10.538 33.115Q505.461-120 484.385-120Z"/></svg>
+      </a>
+    
+    <div id="nav-menu-btn" class="nav-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 -960 960 960" width="20"><path d="M177.37-252.282q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Zm0-186.218q-17.453 0-29.477-11.963-12.024-11.964-12.024-29.326 0-17.363 12.024-29.537T177.37-521.5h605.26q17.453 0 29.477 11.963 12.024 11.964 12.024 29.326 0 17.363-12.024 29.537T782.63-438.5H177.37Zm0-186.217q-17.453 0-29.477-11.964-12.024-11.963-12.024-29.326t12.024-29.537q12.024-12.174 29.477-12.174h605.26q17.453 0 29.477 11.964 12.024 11.963 12.024 29.326t-12.024 29.537q-12.024 12.174-29.477 12.174H177.37Z"/></svg>
+    </div>
+  </nav>
+</navbar>
+<div id="nav-dropdown" class="hidden">
+  <div id="dropdown-link-list">
+    
+      <a class="nav-dropdown-link" href="/">Home</a>
+    
+      <a class="nav-dropdown-link" href="/archives">Archives</a>
+    
+      <a class="nav-dropdown-link" href="/categories">Categories</a>
+    
+      <a class="nav-dropdown-link" href="/tags">Tags</a>
+    
+      <a class="nav-dropdown-link" href="/about">About</a>
+    
+    
+      <a class="nav-dropdown-link" href="/atom.xml" title="RSS 订阅">RSS</a>
+     
+    </div>
+</div>
+<script>
+  let dropdownBtn = document.getElementById("nav-menu-btn");
+  let dropdownEle = document.getElementById("nav-dropdown");
+  dropdownBtn.onclick = function() {
+    dropdownEle.classList.toggle("hidden");
+  }
+</script>
+    </div>
+    <div id="sidebar-wrapper">
+      <sidebar id="sidebar">
+  
+    <div class="widget-wrap">
+  <div class="info-card">
+    <div class="avatar">
+      
+      <div class="img-dim"></div>
+    </div>
+    <div class="info">
+      <div class="username">ryk </div>
+      <div class="dot"></div>
+      <div class="subtitle">算法、网络协议与系统编程实践 </div>
+      <div class="link-list">
+        
+          <a class="link-btn" target="_blank" rel="noopener" href="https://github.com/webfast-lab" title="GitHub"><i class="fa-brands fa-github"></i></a>
+         
+      </div>  
+    </div>
+  </div>
 </div>
 
+  
+  <div class="sticky">
+    
+      
+
+
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">分类</h3>
+      <div class="category-box">
+            <a class="category-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">
+                博客搭建
+                <div class="category-count">1</div>
+            </a>
+        
+            <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/">
+                网络与通信
+                <div class="category-count">1</div>
+            </a>
+        <div class="children"><div class="category-box">
+            <a class="category-link" href="/categories/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80/">
+                通信基础
+                <div class="category-count">1</div>
+            </a>
+        </div></div>
+            <a class="category-link" href="/categories/Linux-%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/">
+                Linux 系统编程
+                <div class="category-count">1</div>
+            </a>
+        <div class="children"><div class="category-box">
+            <a class="category-link" href="/categories/Linux-%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">
+                网络编程
+                <div class="category-count">1</div>
+            </a>
+        </div></div>
+            <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/">
+                算法
+                <div class="category-count">3</div>
+            </a>
+        <div class="children"><div class="category-box">
+            <a class="category-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">
+                基础算法
+                <div class="category-count">3</div>
+            </a>
+        </div></div></div>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">标签</h3>
+      <ul class="widget-tag-list" itemprop="keywords"><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/IPv4/" rel="tag">IPv4</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/IPv6/" rel="tag">IPv6</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/MAC/" rel="tag">MAC</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/Netlink/" rel="tag">Netlink</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/PSK/" rel="tag">PSK</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%88%86%E6%B2%BB/" rel="tag">分治</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag">导航</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="tag">归并排序</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" rel="tag">数字通信</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E6%A8%A1%E8%BF%90%E7%AE%97/" rel="tag">模运算</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li><li class="widget-tag-list-item"><a class="widget-tag-list-link" href="/tags/%E8%B0%83%E5%88%B6/" rel="tag">调制</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">归档</h3>
+      
+      
+        <a class="archive-link" href="/archives/2026/03 ">
+          三月 2026 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2025/07 ">
+          七月 2025 
+          <div class="archive-count">1 </div>
+        </a>
+      
+        <a class="archive-link" href="/archives/2025/03 ">
+          三月 2025 
+          <div class="archive-count">4 </div>
+        </a>
+      
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap">
+    <div class="widget">
+      <h3 class="widget-title">最新文章</h3>
+      <ul>
+        
+          <a class="recent-link" href="/2026/03/25/%E4%BB%8E-ipv4-ipv6-%E8%8E%B7%E5%8F%96-mac-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%BB%E7%BB%93/" title="从 IPv4 / IPv6 获取 MAC 的实现总结" >
+            <div class="recent-link-text">
+              从 IPv4 / IPv6 获取 MAC 的实现总结
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/07/18/%E5%8A%9B%E6%89%A33202/" title="3202. 找出有效子序列的最大长度 II" >
+            <div class="recent-link-text">
+              3202. 找出有效子序列的最大长度 II
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/03/16/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/" title="归并排序基本理解" >
+            <div class="recent-link-text">
+              归并排序基本理解
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/03/12/psk%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/" title="psk基本理解" >
+            <div class="recent-link-text">
+              psk基本理解
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/03/12/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/" title="快速排序基本理解" >
+            <div class="recent-link-text">
+              快速排序基本理解
+            </div>
+          </a>
+        
+          <a class="recent-link" href="/2025/03/10/hello-world/" title="博客说明" >
+            <div class="recent-link-text">
+              博客说明
+            </div>
+          </a>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+  </div>
+</sidebar>
+    </div>
+    <div id="content-body">
+      
+   
+
+<article id="post-从-ipv4-ipv6-获取-mac-的实现总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2026/03/25/%E4%BB%8E-ipv4-ipv6-%E8%8E%B7%E5%8F%96-mac-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%BB%E7%BB%93/">从 IPv4 / IPv6 获取 MAC 的实现总结</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2026-03-25T03:12:00.000Z" itemprop="datePublished">2026-03-25</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/Linux-%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/">Linux 系统编程</a>><a class="meta-cate-link" href="/categories/Linux-%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/">网络编程</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+             词 
+          </div>
         </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPv4/" rel="tag">IPv4</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IPv6/" rel="tag">IPv6</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/" rel="tag">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MAC/" rel="tag">MAC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Netlink/" rel="tag">Netlink</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag">网络编程</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h1><p>在 Linux 环境里，<code>IP -&gt; MAC</code> 不是一个单一接口就能直接覆盖所有情况。</p>
+<p>如果目标 IP 就是本机某个网卡地址，那么应该返回本机接口的 MAC。<br>如果目标 IP 是同链路邻居，那么应该优先从内核邻居缓存中获取。<br>如果目标 IP 不在本地链路上，那么真正能拿到的通常不是目标主机的 MAC，而是下一跳网关的 MAC。</p>
+<p><code>/home/ryk/Documents/code/c/ip_to_mac.cpp</code> 这份代码，正是按这个顺序做了一个统一查询入口。</p>
+<h1 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h1><p>程序入口是 <code>ResolveMacAddress</code>，逻辑分成三步：</p>
+<ol>
+<li>先识别传入的是 IPv4 还是 IPv6。</li>
+<li>先查本机接口地址是否命中。</li>
+<li>未命中时查邻居表；再失败则回退到网关路由并查询网关的邻居项。</li>
+</ol>
+<p>可以把这条链路理解成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">目标 IP</span><br><span class="line">  -&gt; 是否是本机接口地址</span><br><span class="line">  -&gt; 是否存在邻居缓存项</span><br><span class="line">  -&gt; 是否能找到对应路由的网关</span><br><span class="line">  -&gt; 是否能查到网关的邻居 MAC</span><br></pre></td></tr></table></figure>
+
+<p>这个顺序比较合理，因为它符合 Linux 网络栈里的真实转发路径。</p>
+<h1 id="关键实现拆解"><a href="#关键实现拆解" class="headerlink" title="关键实现拆解"></a>关键实现拆解</h1><h2 id="1-先判断地址族"><a href="#1-先判断地址族" class="headerlink" title="1. 先判断地址族"></a>1. 先判断地址族</h2><p>代码通过 <code>DetectFamily</code> 调用 <code>inet_pton</code>，自动识别输入是 IPv4 还是 IPv6，并把二进制结果写入 <code>in_addr</code> 或 <code>in6_addr</code>。</p>
+<p>这样后续所有逻辑都可以共享一套接口，只在底层按 <code>AF_INET</code> 和 <code>AF_INET6</code> 分支处理。</p>
+<h2 id="2-本机接口命中时直接返回"><a href="#2-本机接口命中时直接返回" class="headerlink" title="2. 本机接口命中时直接返回"></a>2. 本机接口命中时直接返回</h2><p><code>FindLocalInterfaceMac</code> 使用 <code>getifaddrs</code> 遍历本机接口：</p>
+<ul>
+<li>遇到 <code>AF_PACKET</code> 地址时，记录接口名和对应 MAC。</li>
+<li>遇到 <code>AF_INET</code> 或 <code>AF_INET6</code> 时，判断是否与目标 IP 完全相等。</li>
+</ul>
+<p>如果目标 IP 正好是本机某张网卡绑定的地址，就直接返回这张网卡的 MAC。</p>
+<p>这一层避免了一个常见误区：本机地址并不需要通过 ARP 或 NDP 去“解析”。</p>
+<h2 id="3-同链路目标从邻居表拿-MAC"><a href="#3-同链路目标从邻居表拿-MAC" class="headerlink" title="3. 同链路目标从邻居表拿 MAC"></a>3. 同链路目标从邻居表拿 MAC</h2><p><code>FindNeighborMac</code> 通过 netlink 向内核发送 <code>RTM_GETNEIGH</code> 请求，读取邻居缓存。</p>
+<p>它在 <code>ParseNeighborResult</code> 里重点解析两个属性：</p>
+<ul>
+<li><code>NDA_DST</code>：邻居项对应的目标 IP</li>
+<li><code>NDA_LLADDR</code>：链路层地址，也就是 MAC</li>
+</ul>
+<p>只要发现 <code>NDA_DST</code> 与目标地址匹配，并且同时存在 <code>NDA_LLADDR</code>，就能返回结果。</p>
+<p>这部分同时兼容 IPv4 和 IPv6，本质上统一走的是 Linux 邻居子系统：</p>
+<ul>
+<li>IPv4 对应 ARP 邻居缓存</li>
+<li>IPv6 对应 NDP 邻居缓存</li>
+</ul>
+<h1 id="4-邻居表未命中时回退到网关"><a href="#4-邻居表未命中时回退到网关" class="headerlink" title="4. 邻居表未命中时回退到网关"></a>4. 邻居表未命中时回退到网关</h1><p>如果目标不是同链路邻居，程序会转去 <code>FindGatewayMac</code>。</p>
+<p>它先调用 <code>FindGatewayRoute</code> 发起 <code>RTM_GETROUTE</code> 查询，拿到目标 IP 对应的路由结果，重点提取：</p>
+<ul>
+<li><code>RTA_GATEWAY</code>：网关地址</li>
+<li><code>RTA_OIF</code>：出接口索引</li>
+<li><code>RTA_PRIORITY</code>：路由优先级</li>
+</ul>
+<p>拿到网关 IP 后，再次调用邻居查询逻辑，去找这个网关在邻居缓存中的 MAC。</p>
+<p>这一点很关键：对于跨网段目标，二层真正发送帧时使用的是“下一跳”的 MAC，而不是远端主机本身的 MAC。</p>
+<h1 id="为什么要同时支持-IPv4-和-IPv6"><a href="#为什么要同时支持-IPv4-和-IPv6" class="headerlink" title="为什么要同时支持 IPv4 和 IPv6"></a>为什么要同时支持 IPv4 和 IPv6</h1><p>这份实现里把很多基础能力都做成了“按地址族复用”的方式：</p>
+<ul>
+<li><code>DetectFamily</code> 负责统一识别输入</li>
+<li><code>FamilyAddressSize</code> 负责统一计算地址长度</li>
+<li><code>SockaddrEqualsIp</code> 负责统一比较接口地址</li>
+<li><code>FindNeighborMac</code> 和 <code>FindGatewayRoute</code> 同时支持两种协议族</li>
+</ul>
+<p>这样代码结构更稳定，不会出现 IPv4 一套逻辑、IPv6 再单独复制一套的问题。</p>
+<h1 id="代码里值得保留的设计点"><a href="#代码里值得保留的设计点" class="headerlink" title="代码里值得保留的设计点"></a>代码里值得保留的设计点</h1><h2 id="RAII-管理系统资源"><a href="#RAII-管理系统资源" class="headerlink" title="RAII 管理系统资源"></a>RAII 管理系统资源</h2><p>代码里定义了 <code>NetlinkSocket</code> 和 <code>IfaddrsGuard</code> 两个小封装：</p>
+<ul>
+<li><code>NetlinkSocket</code> 负责自动关闭 netlink fd</li>
+<li><code>IfaddrsGuard</code> 负责自动释放 <code>getifaddrs</code> 返回的链表</li>
+</ul>
+<p>这种写法能明显减少异常路径或早返回时的资源泄漏风险。</p>
+<h2 id="结果对象统一"><a href="#结果对象统一" class="headerlink" title="结果对象统一"></a>结果对象统一</h2><p>最终返回值统一为 <code>MacLookupResult</code>，里面包含：</p>
+<ul>
+<li><code>macAddress</code></li>
+<li><code>interfaceName</code></li>
+<li><code>source</code></li>
+</ul>
+<p>这样主流程不需要关心底层是从本机接口、邻居缓存还是网关路径得到的结果，接口比较干净。</p>
+<h1 id="实际限制"><a href="#实际限制" class="headerlink" title="实际限制"></a>实际限制</h1><p>这类程序并不能保证“任何 IP 都查得到 MAC”，原因主要有三类：</p>
+<ul>
+<li>目标不在本地链路上，只能得到网关 MAC。</li>
+<li>内核邻居缓存里没有对应项，且程序本身没有主动触发 ARP&#x2F;NDP 探测。</li>
+<li>输入 IP 非法，或者系统当前没有可用路由。</li>
+</ul>
+<p>源码在失败路径里也把这些情况写得比较明确，这一点对排障很有帮助。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>如果把这份程序概括成一句话，就是：</p>
+<p>先判断目标是不是自己；不是自己就查邻居；邻居没有再按路由找下一跳。</p>
+<p>这套思路贴近 Linux 实际的二层转发与邻居解析过程，也因此比“直接查 ARP 表”更完整，尤其适合同时处理 IPv4 和 IPv6 的场景。</p>
+
+        
       </div>
+
+       
+        <footer class="article-footer">
+           
+        </footer>
+         
     </div>
-
     
-  </aside>
-
-
-    </div>
-
-    <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://webfast-lab.github.io/2026/03/25/%E4%BB%8E-ipv4-ipv6-%E8%8E%B7%E5%8F%96-mac-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%BB%E7%BB%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ryk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ryk 的技术博客">
-      <meta itemprop="description" content="记录算法题、通信基础、Linux 网络栈与工程实践，尽量把问题讲清楚、把过程写完整。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ryk 的技术博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2026/03/25/%E4%BB%8E-ipv4-ipv6-%E8%8E%B7%E5%8F%96-mac-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">从 IPv4 / IPv6 获取 MAC 的实现总结</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2026-03-25 11:12:00 / 修改时间：10:50:50" itemprop="dateCreated datePublished" datetime="2026-03-25T11:12:00+08:00">2026-03-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux-%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">Linux 系统编程</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux-%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>结合 ip_to_mac.cpp，梳理一个 Linux 程序如何从本机接口、邻居表和网关回退路径中解析目标 MAC 地址。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2026/03/25/%E4%BB%8E-ipv4-ipv6-%E8%8E%B7%E5%8F%96-mac-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%BB%E7%BB%93/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://webfast-lab.github.io/2025/07/18/%E5%8A%9B%E6%89%A33202/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ryk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ryk 的技术博客">
-      <meta itemprop="description" content="记录算法题、通信基础、Linux 网络栈与工程实践，尽量把问题讲清楚、把过程写完整。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ryk 的技术博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/07/18/%E5%8A%9B%E6%89%A33202/" class="post-title-link" itemprop="url">3202. 找出有效子序列的最大长度 II</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-07-18 12:00:22" itemprop="dateCreated datePublished" datetime="2025-07-18T12:00:22+08:00">2025-07-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-03-25 10:50:50" itemprop="dateModified" datetime="2026-03-25T10:50:50+08:00">2026-03-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">基础算法</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>通过模运算性质和状态转移，整理 LeetCode 3202 的核心解法。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/07/18/%E5%8A%9B%E6%89%A33202/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://webfast-lab.github.io/2025/03/16/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ryk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ryk 的技术博客">
-      <meta itemprop="description" content="记录算法题、通信基础、Linux 网络栈与工程实践，尽量把问题讲清楚、把过程写完整。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ryk 的技术博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/16/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">归并排序基本理解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-16 22:44:54" itemprop="dateCreated datePublished" datetime="2025-03-16T22:44:54+08:00">2025-03-16</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-03-25 10:50:50" itemprop="dateModified" datetime="2026-03-25T10:50:50+08:00">2026-03-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">基础算法</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>从分治视角整理归并排序的原理、递归实现和非递归写法。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/03/16/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://webfast-lab.github.io/2025/03/12/psk%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ryk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ryk 的技术博客">
-      <meta itemprop="description" content="记录算法题、通信基础、Linux 网络栈与工程实践，尽量把问题讲清楚、把过程写完整。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ryk 的技术博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/12/psk%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">psk基本理解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-12 23:10:22" itemprop="dateCreated datePublished" datetime="2025-03-12T23:10:22+08:00">2025-03-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-03-25 10:50:50" itemprop="dateModified" datetime="2026-03-25T10:50:50+08:00">2026-03-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/" itemprop="url" rel="index"><span itemprop="name">网络与通信</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index"><span itemprop="name">通信基础</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>从 PSK 的基本概念入手，整理调制方式、核心特征和理解路径。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/03/12/psk%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://webfast-lab.github.io/2025/03/12/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ryk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ryk 的技术博客">
-      <meta itemprop="description" content="记录算法题、通信基础、Linux 网络栈与工程实践，尽量把问题讲清楚、把过程写完整。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ryk 的技术博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/12/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/" class="post-title-link" itemprop="url">快速排序基本理解</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-12 23:08:36" itemprop="dateCreated datePublished" datetime="2025-03-12T23:08:36+08:00">2025-03-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-03-25 10:50:50" itemprop="dateModified" datetime="2026-03-25T10:50:50+08:00">2026-03-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">基础算法</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>用基准值划分区间，梳理快速排序的核心思想、递归过程和非递归实现。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/03/12/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://webfast-lab.github.io/2025/03/10/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="ryk">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ryk 的技术博客">
-      <meta itemprop="description" content="记录算法题、通信基础、Linux 网络栈与工程实践，尽量把问题讲清楚、把过程写完整。">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Ryk 的技术博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2025/03/10/hello-world/" class="post-title-link" itemprop="url">博客说明</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2025-03-10 23:00:00" itemprop="dateCreated datePublished" datetime="2025-03-10T23:00:00+08:00">2025-03-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2026-03-25 10:50:50" itemprop="dateModified" datetime="2026-03-25T10:50:50+08:00">2026-03-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">博客搭建</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>这是一篇站点说明，用来介绍博客主要关注的方向和后续内容组织方式。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2025/03/10/hello-world/">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-
-</div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-inner">
-
-  <div class="copyright">
-    &copy; 
-    <span itemprop="copyrightYear">2026</span>
-    <span class="with-love">
-      <i class="fa fa-heart"></i>
-    </span>
-    <span class="author" itemprop="copyrightHolder">ryk</span>
+     
   </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  
+</article>
+
+ 
+
+   
+
+<article id="post-力扣3202" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/07/18/%E5%8A%9B%E6%89%A33202/">3202. 找出有效子序列的最大长度 II</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-07-18T04:00:22.000Z" itemprop="datePublished">2025-07-18</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>><a class="meta-cate-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">基础算法</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+             词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LeetCode/" rel="tag">LeetCode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag">动态规划</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%A8%A1%E8%BF%90%E7%AE%97/" rel="tag">模运算</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="3202-找出有效子序列的最大长度-II"><a href="#3202-找出有效子序列的最大长度-II" class="headerlink" title="3202. 找出有效子序列的最大长度 II"></a>3202. 找出有效子序列的最大长度 II</h1><p>题目链接: <a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-maximum-length-of-valid-subsequence-ii/" title="3202. 找出有效子序列的最大长度 II">3202. 找出有效子序列的最大长度 II</a></p>
+<blockquote>
+<p>当前题是<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-the-maximum-length-of-valid-subsequence-i/" title="3201. 找出有效子序列的最大长度 I">3201. 找出有效子序列的最大长度 I</a>的升级版</p>
+</blockquote>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>假设当前已经存在一个数组如下:[1, 4, 2, 3, 4, 4],现在模的值为3,若当前存在一个子序列满足</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">(A+B) % k = (B+C) % k</span><br></pre></td></tr></table></figure>
+<p>推导过程：</p>
+<h3 id="模运算基本性质的推导"><a href="#模运算基本性质的推导" class="headerlink" title="模运算基本性质的推导"></a>模运算基本性质的推导</h3><h4 id="性质描述"><a href="#性质描述" class="headerlink" title="性质描述"></a>性质描述</h4><p>对于整数 ( x ) 和 ( y )，若 ( x % k &#x3D; y % k )，则 ( x - y ) 是 ( k ) 的整数倍（即 ( x - y &#x3D; mk )，其中 ( m ) 为整数）。</p>
+<h4 id="推导过程"><a href="#推导过程" class="headerlink" title="推导过程"></a>推导过程</h4><h5 id="已知条件"><a href="#已知条件" class="headerlink" title="已知条件"></a>已知条件</h5><p>给定：<br>[ (A + B) % k &#x3D; (B + C) % k ]</p>
+<h5 id="应用模运算性质"><a href="#应用模运算性质" class="headerlink" title="应用模运算性质"></a>应用模运算性质</h5><p>根据上述性质，两数同余则差为 ( k ) 的倍数：<br>[ (A + B) - (B + C) &#x3D; mk (m为整数) ]</p>
+<h5 id="化简表达式"><a href="#化简表达式" class="headerlink" title="化简表达式"></a>化简表达式</h5><p>化简左边的式子：<br>[ (A + B) - (B + C) &#x3D; A - C ]</p>
+<p>因此得到：<br>[ A - C &#x3D; mk  (即 A &#x3D; C + mk) ]</p>
+<h5 id="证明-A-k-C-k"><a href="#证明-A-k-C-k" class="headerlink" title="证明 ( A % k &#x3D; C % k )"></a>证明 ( A % k &#x3D; C % k )</h5><p><strong>模运算的定义</strong>：对于任意整数 ( x )，( x % k ) 表示 ( x ) 除以 ( k ) 的余数，记为 ( r )，满足：<br>[ 0 &lt; r &lt; k ]<br>且：<br>[ x &#x3D; nk + r (n为整数) ]</p>
+<p><strong>证明步骤</strong>：</p>
+<ol>
+<li>设 ( C % k &#x3D; r )（即 ( C &#x3D; nk + r )，( 0 leq r &lt; k )）</li>
+<li>代入 ( A &#x3D; C + mk ) 得：<br>[ A &#x3D; (nk + r) + mk &#x3D; (n + m)k + r ]</li>
+<li>根据模运算定义，( A % k ) 即为 ( A ) 除以 ( k ) 的余数 ( r )，因此：<br>[ A % k &#x3D; r &#x3D; C % k ]</li>
+</ol>
+<h2 id="题解思路"><a href="#题解思路" class="headerlink" title="题解思路"></a>题解思路</h2><p>综上所述，我们证明了：<br>当[ (A + B) % k &#x3D; (B + C) % k ]成立时， A % k &#x3D; C % k也成立。</p>
+<p>因此能连接的序列，其B数字旁边的其余两个数字的取模必然是相同的，则易发现最终得到的序列取模必然是a, b, a, b, a, b这种结构的</p>
+<p>因此若当前k为3的时候，取模得到的值可能为0, 1, 2</p>
+<p>则可能出现的序列即为[0, 0], [0, 1], [0, 2], [1, 0], [1, 1], [1, 2], [2, 0], [2, 1], [2, 2]</p>
+<p>则假设当前新的数字取模是1的话，现在则需要给[1, 1]的序列, [1, 0], [1, 2]的三个序列进行子序列添加，表示当前数字可以用于补充当前此三个序列的长度。因此可得到如下代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">maximumLength</span><span class="params">(<span class="type">int</span>[] nums)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">3</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span>[][] f = <span class="keyword">new</span> <span class="title class_">int</span>[k][k];</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> x : nums) &#123;</span><br><span class="line">        x %= k;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">y</span> <span class="operator">=</span> <span class="number">0</span>; y &lt; k; y++) &#123;</span><br><span class="line">            f[y][x] = f[x][y] + <span class="number">1</span>;</span><br><span class="line">            ans = Math.max(ans, f[y][x]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        
+      </div>
+
+       
+        <footer class="article-footer">
+           
+        </footer>
+         
+    </div>
+    
+     
   </div>
+  
+</article>
+
+ 
+
+   
+
+<article id="post-归并排序基本理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/03/16/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/">归并排序基本理解</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-03-16T14:44:54.000Z" itemprop="datePublished">2025-03-16</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>><a class="meta-cate-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">基础算法</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+             词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E6%B2%BB/" rel="tag">分治</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/" rel="tag">归并排序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h1><h3 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h3><p>归并算法是对分治思想的实现。结合到算法中，一个无序的有理数序列，把它两两分成多个子序列，对这些子序列进行排序，此时多个子序列是有序的，然后再两两子序列结合，再次进行排序，持续进行这个过程，当前序列逐渐变得有序。这就是基本的算法思路。</p>
+<h3 id="编写思路"><a href="#编写思路" class="headerlink" title="编写思路"></a>编写思路</h3><p>递归思路：既然当前是需要将无序序列分成多个子序列，那么定义出来一个左边界和一个右边界，然后在递归当前左边界和有边界，直到当前序列中只剩一个元素，则当前序列就是有序的，然后在对两两序列进行排序，逐渐向上排序，最后获得一个有序的序列。<br><img src = "/images/归并排序01.png"></p>
+<h3 id="递归代码"><a href="#递归代码" class="headerlink" title="递归代码"></a>递归代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(List&lt;Integer&gt; list, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> left + ((right-left) / <span class="number">2</span>);</span><br><span class="line">        sort(list, left, mid);</span><br><span class="line">        sort(list, mid + <span class="number">1</span>, right);</span><br><span class="line">        merge(list, left, right, mid);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">merge</span><span class="params">(List&lt;Integer&gt; list, <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> mid)</span> &#123;</span><br><span class="line">    List&lt;Integer&gt; listA = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    List&lt;Integer&gt; listB = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> left; i &lt;= mid; i++) &#123;</span><br><span class="line">        listA.add(list.get(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> mid + <span class="number">1</span>; i &lt;= right; i++) &#123;</span><br><span class="line">        listB.add(list.get(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = <span class="number">0</span>, k = left;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; listA.size() &amp;&amp; j &lt; listB.size()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (listA.get(i) &lt; listB.get(j)) &#123;</span><br><span class="line">            list.set(k++, listA.get(i++));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            list.set(k++, listB.get(j++));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; listA.size()) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> i; l &lt; listA.size(); l++) &#123;</span><br><span class="line">            list.set(k++, listA.get(l));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j &lt; listB.size()) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> j; l &lt; listB.size(); l++) &#123;</span><br><span class="line">            list.set(k++, listB.get(l));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="非递归代码"><a href="#非递归代码" class="headerlink" title="非递归代码"></a>非递归代码</h3><blockquote>
+<p>非递归思路：使用模拟的方法，去模拟当前各个大小区间的归并。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">merge</span><span class="params">(List&lt;Integer&gt; list, <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> mid)</span> &#123;</span><br><span class="line">    List&lt;Integer&gt; listA = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    List&lt;Integer&gt; listB = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> left; i &lt;= mid; i++) &#123;</span><br><span class="line">        listA.add(list.get(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> mid + <span class="number">1</span>; i &lt;= right; i++) &#123;</span><br><span class="line">        listB.add(list.get(i));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>, j = <span class="number">0</span>, k = left;</span><br><span class="line">    <span class="keyword">while</span> (i &lt; listA.size() &amp;&amp; j &lt; listB.size()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (listA.get(i) &lt; listB.get(j)) &#123;</span><br><span class="line">            list.set(k++, listA.get(i++));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            list.set(k++, listB.get(j++));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; listA.size()) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> i; l &lt; listA.size(); l++) &#123;</span><br><span class="line">            list.set(k++, listA.get(l));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (j &lt; listB.size()) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">l</span> <span class="operator">=</span> j; l &lt; listB.size(); l++) &#123;</span><br><span class="line">            list.set(k++, listB.get(l));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort2</span><span class="params">(List&lt;Integer&gt; list)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; list.size(); i = i * <span class="number">2</span>) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; list.size(); j += <span class="number">2</span> * i) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">mid</span> <span class="operator">=</span> Math.min(j + i - <span class="number">1</span>, list.size() - <span class="number">1</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> Math.min(j + <span class="number">2</span> * i - <span class="number">1</span>, list.size() - <span class="number">1</span>);</span><br><span class="line">            merge(list, j, right, mid);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        
+      </div>
+
+       
+        <footer class="article-footer">
+           
+        </footer>
+         
+    </div>
+    
+     
+  </div>
+  
+</article>
+
+ 
+
+   
+
+<article id="post-psk基本理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/03/12/psk%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/">psk基本理解</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-03-12T15:10:22.000Z" itemprop="datePublished">2025-03-12</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/">网络与通信</a>><a class="meta-cate-link" href="/categories/%E7%BD%91%E7%BB%9C%E4%B8%8E%E9%80%9A%E4%BF%A1/%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80/">通信基础</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+             词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PSK/" rel="tag">PSK</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E5%AD%97%E9%80%9A%E4%BF%A1/" rel="tag">数字通信</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%B0%83%E5%88%B6/" rel="tag">调制</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          
+        
+      </div>
+
+       
+        <footer class="article-footer">
+           
+        </footer>
+         
+    </div>
+    
+     
+  </div>
+  
+</article>
+
+ 
+
+   
+
+<article id="post-快速排序基本理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/03/12/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3/">快速排序基本理解</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-03-12T15:08:36.000Z" itemprop="datePublished">2025-03-12</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a>><a class="meta-cate-link" href="/categories/%E7%AE%97%E6%B3%95/%E5%9F%BA%E7%A1%80%E7%AE%97%E6%B3%95/">基础算法</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+             词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E6%B2%BB/" rel="tag">分治</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/" rel="tag">快速排序</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8E%92%E5%BA%8F/" rel="tag">排序</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h1><h3 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h3><p>通过取到一个标志位上的值，区分出小于这个值的部分和大于这个值的部分，再对两边进行排序。本质上来说，就是找出当前排序节点在这个序列中的位置。逐步的将当前大问题分为多个小问题去处理。</p>
+<h3 id="编写思路"><a href="#编写思路" class="headerlink" title="编写思路"></a>编写思路</h3><p>既然上面已经明确了，当前我需要找出一个标准的点（pos值）去将当前的序列进行划分，那么不妨取当前序列的最后一个值（或中间值或左值均可）。当我对这一个值进行排序之后，那么这个值对于序列来说，这个index对应的值只可能是它或者相同值的数。那么，接下来需要面临的，此时我需要明确如何去递归的实现，即自上到下，从大的序列到小的序列逐渐缩小范围，最终得到的序列即为有效序列。<br>递归思路如下：<br><image src="/images/快速排序01.png"><br>现在解决了当前的递归问题，剩下的就是如何去让当前一个序列分成大于pos值和小于pos值的两个区间。<br>那么我取最后一个值为pos值，现在让我的index停留在left-1的位置。此时，如果当前值大于pos的值，那么index就不能变动，因为index的值是后续pos需要交换的值。反之，小于pos时，此时交换当前值交换到index的位置。即如图所示。<br><image src="/images/快速排序02.png"><br>当所有的交换完成之后，此时index对应的值以及前面的值，均为小于pos值的值，后面的值，均大于pos值。此时将当前的基准pos值与index+1的值进行交换，此时获得了当前pos值在序列中最终的位置。<br>得到的序列即为: 4 3 2 5 6 5 10 9 8 7</p>
+<h3 id="递归代码"><a href="#递归代码" class="headerlink" title="递归代码"></a>递归代码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(List&lt;Integer&gt; list, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> getPos(list, left, right);</span><br><span class="line">        sort(list, left, pos - <span class="number">1</span>);</span><br><span class="line">        sort(list, pos + <span class="number">1</span>, right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getPos</span><span class="params">(List&lt;Integer&gt; list, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">    <span class="comment">// 选择一个标准点</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> list.get(right);</span><br><span class="line">    <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> left - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> left; i &lt; right; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (list.get(i) &lt; pos) &#123;</span><br><span class="line">            index++;</span><br><span class="line">            <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> list.get(i);</span><br><span class="line">            list.set(i, list.get(index));</span><br><span class="line">            list.set(index, tmp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    index++;</span><br><span class="line">    list.set(right, list.get(index));</span><br><span class="line">    list.set(index, pos);</span><br><span class="line">    <span class="keyword">return</span> index;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="非递归实现"><a href="#非递归实现" class="headerlink" title="非递归实现"></a>非递归实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Tuple</span> &#123;</span><br><span class="line">    <span class="type">int</span> left;</span><br><span class="line">    <span class="type">int</span> right;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">Tuple</span><span class="params">(<span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.left = left;</span><br><span class="line">        <span class="built_in">this</span>.right = right;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sort</span><span class="params">(List&lt;Integer&gt; list)</span> &#123;</span><br><span class="line">    Stack&lt;Tuple&gt; stack = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;&gt;();</span><br><span class="line">    stack.push(<span class="keyword">new</span> <span class="title class_">Tuple</span>(<span class="number">0</span>, list.size() - <span class="number">1</span>));</span><br><span class="line">    <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">left</span> <span class="operator">=</span> stack.peek().left;</span><br><span class="line">        <span class="type">int</span> <span class="variable">right</span> <span class="operator">=</span> stack.peek().right;</span><br><span class="line">        stack.pop();</span><br><span class="line">        <span class="keyword">if</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> getPos(list, left, right);</span><br><span class="line">            stack.push(<span class="keyword">new</span> <span class="title class_">Tuple</span>(left, pos - <span class="number">1</span>));</span><br><span class="line">            stack.push(<span class="keyword">new</span> <span class="title class_">Tuple</span>(pos + <span class="number">1</span>, right));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getPos</span><span class="params">(List&lt;Integer&gt; list, <span class="type">int</span> left, <span class="type">int</span> right)</span> &#123;</span><br><span class="line">    <span class="comment">// 选择一个标准点</span></span><br><span class="line">    <span class="type">int</span> <span class="variable">pos</span> <span class="operator">=</span> list.get(right);</span><br><span class="line">    <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> left - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> left; i &lt; right; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (list.get(i) &lt; pos) &#123;</span><br><span class="line">            index++;</span><br><span class="line">            <span class="type">int</span> <span class="variable">tmp</span> <span class="operator">=</span> list.get(i);</span><br><span class="line">            list.set(i, list.get(index));</span><br><span class="line">            list.set(index, tmp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    index++;</span><br><span class="line">    list.set(right, list.get(index));</span><br><span class="line">    list.set(index, pos);</span><br><span class="line">    <span class="keyword">return</span> index;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>非递归思路：与上述类似，非递归写法的思路就是用栈去模拟当前的一个左边界和右边界，实现快速排序。</p>
+</blockquote>
+<h3 id="复杂度与稳定性"><a href="#复杂度与稳定性" class="headerlink" title="复杂度与稳定性"></a>复杂度与稳定性</h3><p>快速排序的复杂度是最好是O(nlogn)，最坏是O(n^2)<br>快速排序是不稳定的算法，正如上图所示，在序列中后面的5被交换到了前面</p>
+
+        
+      </div>
+
+       
+        <footer class="article-footer">
+           
+        </footer>
+         
+    </div>
+    
+     
+  </div>
+  
+</article>
+
+ 
+
+   
+
+<article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  
+    
+   
+  <div class="article-inner">
+    <div class="article-main">
+      <header class="article-header">
+        
+<div class="main-title-bar">
+  <div class="main-title-dot"></div>
+  
+    
+      <h1 itemprop="name">
+        <a class="p-name article-title" href="/2025/03/10/hello-world/">博客说明</a>
+      </h1>
+    
+  
+</div>
+
+        <div class='meta-info-bar'>
+          <div class="meta-info">
+  <time class="dt-published" datetime="2025-03-10T15:00:00.000Z" itemprop="datePublished">2025-03-10</time>
+</div>
+          <div class="need-seperator meta-info">
+            <div class="meta-cate-flex">
+  
+  <a class="meta-cate-link" href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
+   
+</div>
+  
+          </div>
+          <div class="wordcount need-seperator meta-info">
+             词 
+          </div>
+        </div>
+        
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag">博客</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag">导航</a></li></ul>
+
+      </header>
+      <div class="e-content article-entry" itemprop="articleBody">
+        
+          <h1 id="写作方向"><a href="#写作方向" class="headerlink" title="写作方向"></a>写作方向</h1><p>这个博客主要记录三类内容：</p>
+<ul>
+<li>算法题与基础算法</li>
+<li>通信、网络与协议理解</li>
+<li>Linux 系统编程与工程实践</li>
+</ul>
+<p>后续文章会尽量补充分类、摘要和关键结论，让首页和分类页更容易直接浏览。</p>
+
+        
+      </div>
+
+       
+        <footer class="article-footer">
+           
+        </footer>
+         
+    </div>
+    
+     
+  </div>
+  
+</article>
+
+ 
+
+
 
     </div>
-  </footer>
-
+    <div id="footer-wrapper">
+      <footer id="footer">
   
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
+  <div id="footer-info" class="inner">
+    
+    &copy; 2026 ryk<br>
+    Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & Theme <a target="_blank" rel="noopener" href="https://github.com/saicaca/hexo-theme-vivia">Vivia</a>
   </div>
-  <div class="sidebar-dimmer"></div>
-  <div class="back-to-top" role="button" aria-label="返回顶部">
-    <i class="fa fa-arrow-up fa-lg"></i>
-    <span>0%</span>
+</footer>
+
+    </div>
+    <div class="back-to-top-wrapper">
+    <button id="back-to-top-btn" class="back-to-top-btn hide" onclick="topFunction()">
+        <i class="fa-solid fa-angle-up"></i>
+    </button>
+</div>
+
+<script>
+    function topFunction() {
+        window.scroll({ top: 0, behavior: 'smooth' });
+    }
+    let btn = document.getElementById('back-to-top-btn');
+    function scrollFunction() {
+        if (document.body.scrollTop > 600 || document.documentElement.scrollTop > 600) {
+            btn.classList.remove('hide')
+        } else {
+            btn.classList.add('hide')
+        }
+    }
+    window.onscroll = function() {
+        scrollFunction();
+    }
+</script>
+
   </div>
-  <div class="reading-progress-bar"></div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
-
-
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
-
-  
-
-
-
-
-
-
-  
-
-
-
-
-
+  <script src="/js/light-dark-switch.js"></script>
 </body>
 </html>
