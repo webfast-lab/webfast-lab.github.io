@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha256-dABdfBfUoC8vJUBOwGVdm8L9qlMWaHTIfXt+7GnZCIo=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"webfast-lab.github.io","root":"/","images":"/images","scheme":"Mist","darkmode":false,"version":"8.22.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":"flat"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="结合 ip_to_mac.cpp，梳理一个 Linux 程序如何从本机接口、邻居表和网关回退路径中解析目标 MAC 地址。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从 IPv4 &#x2F; IPv6 获取 MAC 的实现总结">
+<meta property="og:url" content="https://webfast-lab.github.io/2026/03/25/%E4%BB%8E-ipv4-ipv6-%E8%8E%B7%E5%8F%96-mac-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Ryk 的技术博客">
+<meta property="og:description" content="结合 ip_to_mac.cpp，梳理一个 Linux 程序如何从本机接口、邻居表和网关回退路径中解析目标 MAC 地址。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-03-25T03:12:00.000Z">
+<meta property="article:modified_time" content="2026-03-25T02:50:50.021Z">
+<meta property="article:author" content="ryk">
+<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="网络编程">
+<meta property="article:tag" content="Netlink">
+<meta property="article:tag" content="IPv4">
+<meta property="article:tag" content="IPv6">
+<meta property="article:tag" content="MAC">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://webfast-lab.github.io/2026/03/25/%E4%BB%8E-ipv4-ipv6-%E8%8E%B7%E5%8F%96-mac-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%BB%E7%BB%93/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://webfast-lab.github.io/2026/03/25/%E4%BB%8E-ipv4-ipv6-%E8%8E%B7%E5%8F%96-mac-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%BB%E7%BB%93/","path":"2026/03/25/从-ipv4-ipv6-获取-mac-的实现总结/","title":"从 IPv4 / IPv6 获取 MAC 的实现总结"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>从 IPv4 / IPv6 获取 MAC 的实现总结 | Ryk 的技术博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Ryk 的技术博客</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">算法、网络协议与系统编程实践</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-table-cells-large fa-fw"></i>分类</a></li><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-house fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-box-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%83%8C%E6%99%AF"><span class="nav-number">1.</span> <span class="nav-text">问题背景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B4%E4%BD%93%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">整体流程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E5%AE%9E%E7%8E%B0%E6%8B%86%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">关键实现拆解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%85%88%E5%88%A4%E6%96%AD%E5%9C%B0%E5%9D%80%E6%97%8F"><span class="nav-number">3.1.</span> <span class="nav-text">1. 先判断地址族</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%9C%AC%E6%9C%BA%E6%8E%A5%E5%8F%A3%E5%91%BD%E4%B8%AD%E6%97%B6%E7%9B%B4%E6%8E%A5%E8%BF%94%E5%9B%9E"><span class="nav-number">3.2.</span> <span class="nav-text">2. 本机接口命中时直接返回</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E5%90%8C%E9%93%BE%E8%B7%AF%E7%9B%AE%E6%A0%87%E4%BB%8E%E9%82%BB%E5%B1%85%E8%A1%A8%E6%8B%BF-MAC"><span class="nav-number">3.3.</span> <span class="nav-text">3. 同链路目标从邻居表拿 MAC</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E9%82%BB%E5%B1%85%E8%A1%A8%E6%9C%AA%E5%91%BD%E4%B8%AD%E6%97%B6%E5%9B%9E%E9%80%80%E5%88%B0%E7%BD%91%E5%85%B3"><span class="nav-number">4.</span> <span class="nav-text">4. 邻居表未命中时回退到网关</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%90%8C%E6%97%B6%E6%94%AF%E6%8C%81-IPv4-%E5%92%8C-IPv6"><span class="nav-number">5.</span> <span class="nav-text">为什么要同时支持 IPv4 和 IPv6</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%87%8C%E5%80%BC%E5%BE%97%E4%BF%9D%E7%95%99%E7%9A%84%E8%AE%BE%E8%AE%A1%E7%82%B9"><span class="nav-number">6.</span> <span class="nav-text">代码里值得保留的设计点</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RAII-%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E8%B5%84%E6%BA%90"><span class="nav-number">6.1.</span> <span class="nav-text">RAII 管理系统资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E5%AF%B9%E8%B1%A1%E7%BB%9F%E4%B8%80"><span class="nav-number">6.2.</span> <span class="nav-text">结果对象统一</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%9E%E9%99%85%E9%99%90%E5%88%B6"><span class="nav-number">7.</span> <span class="nav-text">实际限制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">8.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">ryk</p>
+  <div class="site-description" itemprop="description">记录算法题、通信基础、Linux 网络栈与工程实践，尽量把问题讲清楚、把过程写完整。</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://webfast-lab.github.io/2026/03/25/%E4%BB%8E-ipv4-ipv6-%E8%8E%B7%E5%8F%96-mac-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%80%BB%E7%BB%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="ryk">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ryk 的技术博客">
+      <meta itemprop="description" content="记录算法题、通信基础、Linux 网络栈与工程实践，尽量把问题讲清楚、把过程写完整。">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="从 IPv4 / IPv6 获取 MAC 的实现总结 | Ryk 的技术博客">
+      <meta itemprop="description" content="结合 ip_to_mac.cpp，梳理一个 Linux 程序如何从本机接口、邻居表和网关回退路径中解析目标 MAC 地址。">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          从 IPv4 / IPv6 获取 MAC 的实现总结
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2026-03-25 11:12:00 / 修改时间：10:50:50" itemprop="dateCreated datePublished" datetime="2026-03-25T11:12:00+08:00">2026-03-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">Linux 系统编程</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux-%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">网络编程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+            <div class="post-description">结合 ip_to_mac.cpp，梳理一个 Linux 程序如何从本机接口、邻居表和网关回退路径中解析目标 MAC 地址。</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="问题背景"><a href="#问题背景" class="headerlink" title="问题背景"></a>问题背景</h1><p>在 Linux 环境里，<code>IP -&gt; MAC</code> 不是一个单一接口就能直接覆盖所有情况。</p>
+<p>如果目标 IP 就是本机某个网卡地址，那么应该返回本机接口的 MAC。<br>如果目标 IP 是同链路邻居，那么应该优先从内核邻居缓存中获取。<br>如果目标 IP 不在本地链路上，那么真正能拿到的通常不是目标主机的 MAC，而是下一跳网关的 MAC。</p>
+<p><code>/home/ryk/Documents/code/c/ip_to_mac.cpp</code> 这份代码，正是按这个顺序做了一个统一查询入口。</p>
+<h1 id="整体流程"><a href="#整体流程" class="headerlink" title="整体流程"></a>整体流程</h1><p>程序入口是 <code>ResolveMacAddress</code>，逻辑分成三步：</p>
+<ol>
+<li>先识别传入的是 IPv4 还是 IPv6。</li>
+<li>先查本机接口地址是否命中。</li>
+<li>未命中时查邻居表；再失败则回退到网关路由并查询网关的邻居项。</li>
+</ol>
+<p>可以把这条链路理解成：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">目标 IP</span><br><span class="line">  -&gt; 是否是本机接口地址</span><br><span class="line">  -&gt; 是否存在邻居缓存项</span><br><span class="line">  -&gt; 是否能找到对应路由的网关</span><br><span class="line">  -&gt; 是否能查到网关的邻居 MAC</span><br></pre></td></tr></table></figure>
+
+<p>这个顺序比较合理，因为它符合 Linux 网络栈里的真实转发路径。</p>
+<h1 id="关键实现拆解"><a href="#关键实现拆解" class="headerlink" title="关键实现拆解"></a>关键实现拆解</h1><h2 id="1-先判断地址族"><a href="#1-先判断地址族" class="headerlink" title="1. 先判断地址族"></a>1. 先判断地址族</h2><p>代码通过 <code>DetectFamily</code> 调用 <code>inet_pton</code>，自动识别输入是 IPv4 还是 IPv6，并把二进制结果写入 <code>in_addr</code> 或 <code>in6_addr</code>。</p>
+<p>这样后续所有逻辑都可以共享一套接口，只在底层按 <code>AF_INET</code> 和 <code>AF_INET6</code> 分支处理。</p>
+<h2 id="2-本机接口命中时直接返回"><a href="#2-本机接口命中时直接返回" class="headerlink" title="2. 本机接口命中时直接返回"></a>2. 本机接口命中时直接返回</h2><p><code>FindLocalInterfaceMac</code> 使用 <code>getifaddrs</code> 遍历本机接口：</p>
+<ul>
+<li>遇到 <code>AF_PACKET</code> 地址时，记录接口名和对应 MAC。</li>
+<li>遇到 <code>AF_INET</code> 或 <code>AF_INET6</code> 时，判断是否与目标 IP 完全相等。</li>
+</ul>
+<p>如果目标 IP 正好是本机某张网卡绑定的地址，就直接返回这张网卡的 MAC。</p>
+<p>这一层避免了一个常见误区：本机地址并不需要通过 ARP 或 NDP 去“解析”。</p>
+<h2 id="3-同链路目标从邻居表拿-MAC"><a href="#3-同链路目标从邻居表拿-MAC" class="headerlink" title="3. 同链路目标从邻居表拿 MAC"></a>3. 同链路目标从邻居表拿 MAC</h2><p><code>FindNeighborMac</code> 通过 netlink 向内核发送 <code>RTM_GETNEIGH</code> 请求，读取邻居缓存。</p>
+<p>它在 <code>ParseNeighborResult</code> 里重点解析两个属性：</p>
+<ul>
+<li><code>NDA_DST</code>：邻居项对应的目标 IP</li>
+<li><code>NDA_LLADDR</code>：链路层地址，也就是 MAC</li>
+</ul>
+<p>只要发现 <code>NDA_DST</code> 与目标地址匹配，并且同时存在 <code>NDA_LLADDR</code>，就能返回结果。</p>
+<p>这部分同时兼容 IPv4 和 IPv6，本质上统一走的是 Linux 邻居子系统：</p>
+<ul>
+<li>IPv4 对应 ARP 邻居缓存</li>
+<li>IPv6 对应 NDP 邻居缓存</li>
+</ul>
+<h1 id="4-邻居表未命中时回退到网关"><a href="#4-邻居表未命中时回退到网关" class="headerlink" title="4. 邻居表未命中时回退到网关"></a>4. 邻居表未命中时回退到网关</h1><p>如果目标不是同链路邻居，程序会转去 <code>FindGatewayMac</code>。</p>
+<p>它先调用 <code>FindGatewayRoute</code> 发起 <code>RTM_GETROUTE</code> 查询，拿到目标 IP 对应的路由结果，重点提取：</p>
+<ul>
+<li><code>RTA_GATEWAY</code>：网关地址</li>
+<li><code>RTA_OIF</code>：出接口索引</li>
+<li><code>RTA_PRIORITY</code>：路由优先级</li>
+</ul>
+<p>拿到网关 IP 后，再次调用邻居查询逻辑，去找这个网关在邻居缓存中的 MAC。</p>
+<p>这一点很关键：对于跨网段目标，二层真正发送帧时使用的是“下一跳”的 MAC，而不是远端主机本身的 MAC。</p>
+<h1 id="为什么要同时支持-IPv4-和-IPv6"><a href="#为什么要同时支持-IPv4-和-IPv6" class="headerlink" title="为什么要同时支持 IPv4 和 IPv6"></a>为什么要同时支持 IPv4 和 IPv6</h1><p>这份实现里把很多基础能力都做成了“按地址族复用”的方式：</p>
+<ul>
+<li><code>DetectFamily</code> 负责统一识别输入</li>
+<li><code>FamilyAddressSize</code> 负责统一计算地址长度</li>
+<li><code>SockaddrEqualsIp</code> 负责统一比较接口地址</li>
+<li><code>FindNeighborMac</code> 和 <code>FindGatewayRoute</code> 同时支持两种协议族</li>
+</ul>
+<p>这样代码结构更稳定，不会出现 IPv4 一套逻辑、IPv6 再单独复制一套的问题。</p>
+<h1 id="代码里值得保留的设计点"><a href="#代码里值得保留的设计点" class="headerlink" title="代码里值得保留的设计点"></a>代码里值得保留的设计点</h1><h2 id="RAII-管理系统资源"><a href="#RAII-管理系统资源" class="headerlink" title="RAII 管理系统资源"></a>RAII 管理系统资源</h2><p>代码里定义了 <code>NetlinkSocket</code> 和 <code>IfaddrsGuard</code> 两个小封装：</p>
+<ul>
+<li><code>NetlinkSocket</code> 负责自动关闭 netlink fd</li>
+<li><code>IfaddrsGuard</code> 负责自动释放 <code>getifaddrs</code> 返回的链表</li>
+</ul>
+<p>这种写法能明显减少异常路径或早返回时的资源泄漏风险。</p>
+<h2 id="结果对象统一"><a href="#结果对象统一" class="headerlink" title="结果对象统一"></a>结果对象统一</h2><p>最终返回值统一为 <code>MacLookupResult</code>，里面包含：</p>
+<ul>
+<li><code>macAddress</code></li>
+<li><code>interfaceName</code></li>
+<li><code>source</code></li>
+</ul>
+<p>这样主流程不需要关心底层是从本机接口、邻居缓存还是网关路径得到的结果，接口比较干净。</p>
+<h1 id="实际限制"><a href="#实际限制" class="headerlink" title="实际限制"></a>实际限制</h1><p>这类程序并不能保证“任何 IP 都查得到 MAC”，原因主要有三类：</p>
+<ul>
+<li>目标不在本地链路上，只能得到网关 MAC。</li>
+<li>内核邻居缓存里没有对应项，且程序本身没有主动触发 ARP&#x2F;NDP 探测。</li>
+<li>输入 IP 非法，或者系统当前没有可用路由。</li>
+</ul>
+<p>源码在失败路径里也把这些情况写得比较明确，这一点对排障很有帮助。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>如果把这份程序概括成一句话，就是：</p>
+<p>先判断目标是不是自己；不是自己就查邻居；邻居没有再按路由找下一跳。</p>
+<p>这套思路贴近 Linux 实际的二层转发与邻居解析过程，也因此比“直接查 ARP 表”更完整，尤其适合同时处理 IPv4 和 IPv6 的场景。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+              <a href="/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" rel="tag"># 网络编程</a>
+              <a href="/tags/Netlink/" rel="tag"># Netlink</a>
+              <a href="/tags/IPv4/" rel="tag"># IPv4</a>
+              <a href="/tags/IPv6/" rel="tag"># IPv6</a>
+              <a href="/tags/MAC/" rel="tag"># MAC</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2025/07/18/%E5%8A%9B%E6%89%A33202/" rel="prev" title="3202. 找出有效子序列的最大长度 II">
+                  <i class="fa fa-angle-left"></i> 3202. 找出有效子序列的最大长度 II
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">ryk</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/mist/" rel="noopener" target="_blank">NexT.Mist</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
